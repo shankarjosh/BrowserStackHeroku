@@ -1,17 +1,18 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven' // This must match the exact Name you typed in the Jenkins Tools page
+        maven 'Maven'
     }
     stages {
         stage('Clean & Compile') {
             steps {
-                bat 'mvn clean compile'
+                // Explicitly use the absolute path to cmd.exe
+                bat '"C:\\Windows\\System32\\cmd.exe" /c mvn clean compile'
             }
         }
         stage('Run BrowserStack Tests') {
             steps {
-                bat 'mvn test -DsuiteXmlFile=testng.xml'
+                bat '"C:\\Windows\\System32\\cmd.exe" /c mvn test -DsuiteXmlFile=testng.xml'
             }
         }
     }
